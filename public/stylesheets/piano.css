@@ -1,0 +1,68 @@
+.back {
+    font-weight: bold;
+    font-size: 30px;
+}
+
+.back:hover{
+    opacity: 0.5;
+}
+
+.pianoContainer {
+    margin: 0;
+    min-height: 50vh;
+    display: flex;
+    align-items: center;
+}
+
+.piano {
+    display: flex;
+}
+
+.white {
+    width: 80px;
+    height: 320px;
+    background-color: white;
+    border: 1px solid gray;
+    position: relative;
+}
+
+.black {
+    width: 48px;
+    height: 192px;
+    background-color: black;
+    margin-left: -24px;
+    margin-right: -24px;
+    z-index: 2;
+    position: relative;
+    font-weight: bold;
+}
+
+.white:hover {
+    background-color: #e8e8e8;
+}
+
+.black:hover {
+    background-color: #383838;
+}
+
+.white:active {
+    background-color: #bcbcbc;
+}
+
+.black:active {
+    background-color: #181818;
+}
+
+.whiteGuide {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    color: #000000;
+}
+
+.blackGuide {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    color: #ffffff;
+}

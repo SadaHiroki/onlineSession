@@ -1,0 +1,158 @@
+#!/usr/bin/env node
+
+/**
+ * Module dependencies.
+ */
+
+const { log } = require("console");
+const app = require("../app");
+const debug = require("debug")("pianoapp:server");
+const http = require("http");
+const socketIo = require("socket.io");
+
+/**
+ * Get port from environment and store in Express.
+ */
+
+const port = normalizePort(process.env.PORT || "3000");
+app.set("port", port);
+
+/**
+ * Create HTTP server.
+ */
+
+const server = http.createServer(app);
+
+/**
+ * Listen on provided port, on all network interfaces.
+ */
+
+server.listen(port);
+server.on("error", onError);
+server.on("listening", onListening);
+
+/**
+ * ADDED!! Socket.IO Connection.
+ */
+const io = socketIo(server);
+//ルームを管理する配列
+const rooms = {};
+
+const MAX_ROOM = 10;
+const MAX_ROOM_CAPACITY = 5;
+//クライアントが接続したときの処理
+io.on("connection", (socket) => {
+  // ルームに入室する処理
+  socket.on("joinRoom", (room) => {
+    // 既存のルームに入室する場合は、クライアントを既存のルームから削除
+    if (socket.room) {
+      socket.leave(socket.room);
+      delete rooms[socket.room][socket.id];
+    }
+
+    // 新しいルームにクライアントを追加
+    if (!rooms[room]) {
+      if (Object.keys(rooms).length >= MAX_ROOM) {
+        console.log("roomLimit");
+        socket.emit("roomLimit");
+        return;
+      }
+      rooms[room] = {};
+    }
+
+    //ルーム参加人数制限
+    if (Object.keys(rooms[room]).length >= MAX_ROOM_CAPACITY) {
+      console.log("roomLimitCapacity");
+      socket.emit("roomLimitCapacity");
+      return;
+    }
+
+    rooms[room][socket.id] = socket;
+    socket.room = room;
+    socket.join(room);
+    socket.emit("joinedRoom");
+    console.log(rooms);
+  });
+
+  //ピアノ
+  socket.on("piano", (hz) => {
+    io.to(socket.room).emit("piano", hz);
+  });
+
+  //ドラム
+  socket.on("drum", (src) => {
+    io.to(socket.room).emit("drum", src);
+  });
+
+  //ギター
+  socket.on("guitar", (src, i) => {
+    io.to(socket.room).emit("guitar", src, i);
+  });
+//   // クライアントが切断したときの処理
+  socket.on("disconnect", () => {
+    // クライアントをルームから削除
+    if (socket.room && rooms[socket.room]) {
+      delete rooms[socket.room][socket.id];
+      if (Object.keys(rooms[socket.room]).length === 0) {
+        delete rooms[socket.room];
+      }
+    }
+    console.log("disconnect");
+  });
+});
+
+/**
+ * Normalize a port into a number, string, or false.
+ */
+
+function normalizePort(val) {
+  const port = parseInt(val, 10);
+
+  if (isNaN(port)) {
+    // named pipe
+    return val;
+  }
+
+  if (port >= 0) {
+    // port number
+    return port;
+  }
+
+  return false;
+}
+
+/**
+ * Event listener for HTTP server "error" event.
+ */
+
+function onError(error) {
+  if (error.syscall !== "listen") {
+    throw error;
+  }
+
+  const bind = typeof port === "string" ? "Pipe " + port : "Port " + port;
+
+  // handle specific listen errors with friendly messages
+  switch (error.code) {
+    case "EACCES":
+      console.error(bind + " requires elevated privileges");
+      process.exit(1);
+      break;
+    case "EADDRINUSE":
+      console.error(bind + " is already in use");
+      process.exit(1);
+      break;
+    default:
+      throw error;
+  }
+}
+
+/**
+ * Event listener for HTTP server "listening" event.
+ */
+
+function onListening() {
+  const addr = server.address();
+  const bind = typeof addr === "string" ? "pipe " + addr : "port " + addr.port;
+  debug("Listening on " + bind);
+}

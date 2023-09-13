@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>楽器選択</title>
+    <link rel="stylesheet" href="./stylesheets/selection.css">
+</head>
+
+<body>
+    <span class="back" onclick="window.history.back()">&#8592;戻る</span>
+    <h2>どの楽器で演奏する？</h2>
+    <div class="imagecontainer">
+        <div class="item">
+            <div id="piano">
+                <img src="./images/pianoillust.png" alt="piano">
+                <p>ピアノ</p>
+            </div>
+        </div>
+        <div class="item">
+            <div id="guitar">
+                <img src="./images/guitarillust.png" alt="guitar">
+                <p>ギター</p>
+            </div>
+        </div>
+        <div class="item">
+            <div id="bass">
+                <img src="./images/bassillust.png" alt="bass">
+                <p>ベース</p>
+            </div>
+        </div>
+        <div class="item">
+            <div id="drum">
+                <img src="./images/drumillust.png" alt="drum">
+                <p>ドラム</p>
+            </div>
+        </div>
+    </div>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="./javascripts/selection.js"></script>
+</body>
+
+</html>
