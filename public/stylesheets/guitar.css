@@ -41,6 +41,7 @@
 
 .open{
     background-color: rgb(198, 154, 83);
+    order: 99;
 }
 .string1, .string2, .string3, .string4, .string5, .string6 {
     width: auto;
@@ -82,35 +83,35 @@
 #mark-one {
     position: absolute;
     top: 110px;
-    right: 259px;
+    left: 180px;
 }
 
 #mark-two {
     position: absolute;
     top: 110px;
-    right: 412px;
+    left: 335px;
 }
 
 #mark-three {
     position: absolute;
     top: 110px;
-    right: 565px;
+    left: 490px;
 }
 
 #mark-four {
     position: absolute;
     top: 110px;
-    left: 335px;
+    right: 410px;
 }
 
 #mark-five {
     position: absolute;
     top: 30px;
-    left: 105px;
+    right: 180px;
 }
 
 #mark-six {
     position: absolute;
     bottom: 30px;
-    left: 105px;
+    right: 180px;
 }
