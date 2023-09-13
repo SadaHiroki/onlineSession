@@ -69,7 +69,7 @@ document.addEventListener("keydown", (e) => {
     socket.emit("guitar", guitars[count].source, i);
     count++;
   });
-});
+}, true);
 
 socket.on("guitar", (src, i) => {
   guitarClass.play(src, i);
