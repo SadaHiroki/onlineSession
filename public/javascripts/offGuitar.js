@@ -55,7 +55,6 @@ document.addEventListener("keyup", (e) => {
         F: [2, 2, 3, 4, 4, 2],
         g: [3, 0, 0, 0, 2, 3],
         G: [4, 4, 5, 6, 6, 4],
-        r :[]
       };
   codes[e.key].forEach((i) => {
     guitarClass.play(guitars[count].source, i);
