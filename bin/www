@@ -76,21 +76,21 @@ io.on("connection", (socket) => {
 
   //ピアノ
   socket.on("piano", (hz) => {
-    if(hz.sender !== socket.id){
+    if(hz.sender != socket.id){
     io.to(socket.room).emit("piano", hz);
     }
   });
 
   //ドラム
   socket.on("drum", (src) => {
-    if(src.sender !== socket.id){
+    if(src.sender != socket.id){
     io.to(socket.room).emit("drum", src);
     }
   });
 
   //ギター
   socket.on("guitar", (src, i) => {
-    if(src.sender !== socket.id){
+    if(src.sender != socket.id){
     io.to(socket.room).emit("guitar", src, i);
     }
   });
