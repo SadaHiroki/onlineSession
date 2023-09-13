@@ -90,7 +90,7 @@ io.on("connection", (socket) => {
 
   //ギター
   socket.on("guitar", (src, i) => {
-    if(hz.sender !== socket.id){
+    if(src.sender !== socket.id){
     io.to(socket.room).emit("guitar", src, i);
     }
   });
