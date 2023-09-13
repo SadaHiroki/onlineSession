@@ -14,12 +14,12 @@
 .guitar-container {
     position: absolute;
     display: flex;
-    flex-direction: column-reverse;
+    flex-direction: column;
 }
 
 .neck {
     display: flex;
-    flex-direction: row-reverse;
+    flex-direction: row;
 }
 
 .guitar {
