@@ -16,14 +16,13 @@ const drum = new Drum();
 const guitar = new Guitar();
 
 // クリック
-var pianoKey = document.getElementsByClassName("pianokey");
-var pianoKeyL = pianoKey.length;
-for (i = 0; i < pianoKeyL; i++) {
+const pianoKey = document.getElementsByClassName("pianokey");
+for (i = 0; i < pianoKey.length; i++) {
   ((i) => {
     pianoKey[i].addEventListener(
       "click",
       () => {
-        var hz = 440 * Math.pow(2, (1 / 12) * (i - 9));
+        const hz = 440 * Math.pow(2, (1 / 12) * (i - 9));
         piano.play(hz);
         socket.emit("piano", hz);
       },
@@ -33,33 +32,13 @@ for (i = 0; i < pianoKeyL; i++) {
 }
 
 // キーボード
-document.addEventListener("keyup", keydownEvent, true);
-
-function keydownEvent(e) {
-  const keys = {
-    81: 0,
-    50: 1,
-    87: 2,
-    51: 3,
-    69: 4,
-    82: 5,
-    53: 6,
-    84: 7,
-    54: 8,
-    89: 9,
-    55: 10,
-    85: 11,
-    73: 12,
-    57: 13,
-    79: 14,
-    48: 15,
-    80: 16,
-  };
-  var hz = 440 * Math.pow(2, (1 / 12) * (keys[e.keyCode] - 9));
-  console.log(e.keyCode);
-  piano.play(hz);
-  socket.emit("piano", hz);
-}
+document.addEventListener("keyup", (e) => {
+  if (e.key in piano.keys) {
+    const hz = 440 * Math.pow(2, (1 / 12) * (keys[e.key] - 9));
+    piano.play(hz);
+    socket.emit("piano", hz);
+  }
+});
 
 // ソケット
 socket.on("piano", (hz) => {
@@ -68,12 +47,10 @@ socket.on("piano", (hz) => {
 
 // ドラム
 socket.on("drum", (src) => {
-
   drum.play(src);
 });
 
 // ギター
 socket.on("guitar", (src, i) => {
-
   guitar.play(src, i);
 });
