@@ -9,7 +9,7 @@ socket.on("connect", () => {
 });
 document.getElementById("roomNumber").innerText = "部屋番号：" + room;
 
-// ドラム
+// クラス
 const drum = new Drum();
 const piano = new Piano();
 const guitar = new Guitar();
@@ -49,6 +49,7 @@ document.addEventListener("keyup", (e) => {
     socket.emit("drum", drum.keys[e.keyCode]);
   }
 });
+
 //ソケット
 socket.on("drum", (src) => {
   drum.play(src);

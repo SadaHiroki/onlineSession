@@ -8,11 +8,12 @@ socket.on("connect", () => {
 });
 document.getElementById("roomNumber").innerText = "部屋番号：" + room;
 
-// ギター
+// クラス
 const guitarClass = new Guitar();
 const drum = new Drum();
 const piano = new Piano();
 
+//クリック
 guitarClass.guitars.forEach((guitar) => {
   const array = document.getElementsByClassName(guitar.class);
   for (let i = 0; i < array.length; i++) {
@@ -23,20 +24,40 @@ guitarClass.guitars.forEach((guitar) => {
   }
 });
 
-document.addEventListener(
-  "keyup",
-  (e) => {
-    var count = 0;
-    if (e.key in guitarClass.codes) {
-      guitarClass.codes[e.key].forEach((i) => {
-        guitarClass.play(guitarClass.guitars[count].source, i);
-        count++;
-      });
+//キーボード
+var minorFlag = false;
+document.addEventListener("keydown", (e) => {
+  var count = 0;
+  var code;
+  if (e.key === "m" || e.key === "M") {
+    minorFlag = true;
+  }
+  if (minorFlag) {
+    if ((e.key != "m" || e.key != "M") && e.key in guitarClass.codes) {
+      code = guitarClass.codes["m"][e.key];
     }
-  },
-  true
-);
+  } else {
+    if ((e.key != "m" || e.key != "M") && e.key in guitarClass.codes) {
+      code = guitarClass.codes[e.key];
+    }
+  }
+  console.log(code);
+  if (code) {
+    code.forEach((i) => {
+      guitarClass.play(guitarClass.guitars[count].source, i);
+      socket.emit("guitar", guitarClass.guitars[count].source, i);
+      count++;
+    });
+  }
+});
 
+document.addEventListener("keyup", (e) => {
+  if (e.key === "m" || e.key === "M") {
+    minorFlag = false;
+  }
+});
+
+//ギターソケット
 socket.on("guitar", (src, i) => {
   guitarClass.play(src, i);
 });
