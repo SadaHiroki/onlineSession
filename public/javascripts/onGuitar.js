@@ -18,7 +18,6 @@ guitarClass.guitars.forEach((guitar) => {
   const array = document.getElementsByClassName(guitar.class);
   for (let i = 0; i < array.length; i++) {
     array[i].addEventListener("click", () => {
-      guitarClass.play(guitar.source, i);
       socket.emit("guitar", guitar.source, i);
     });
   }
@@ -44,7 +43,6 @@ document.addEventListener("keydown", (e) => {
   console.log(code);
   if (code) {
     code.forEach((i) => {
-      guitarClass.play(guitarClass.guitars[count].source, i);
       socket.emit("guitar", guitarClass.guitars[count].source, i);
       count++;
     });

@@ -37,7 +37,6 @@ document.getElementById("snare").onclick = (e) => {
 
 drum.drumParts.forEach((drumPart) => {
   document.getElementById(drumPart.id).addEventListener("click", () => {
-    drum.play(drumPart.source);
     socket.emit("drum", drumPart.source);
   });
 });
@@ -45,7 +44,6 @@ drum.drumParts.forEach((drumPart) => {
 //キーボード
 document.addEventListener("keyup", (e) => {
   if (e.keyCode in drum.keys) {
-    drum.play(drum.keys[e.keyCode]);
     socket.emit("drum", drum.keys[e.keyCode]);
   }
 });

@@ -23,7 +23,6 @@ for (i = 0; i < pianoKey.length; i++) {
       "click",
       () => {
         const hz = 440 * Math.pow(2, (1 / 12) * (i - 9));
-        piano.play(hz);
         socket.emit("piano", hz);
       },
       false
@@ -34,8 +33,7 @@ for (i = 0; i < pianoKey.length; i++) {
 // キーボード
 document.addEventListener("keyup", (e) => {
   if (e.key in piano.keys) {
-    const hz = 440 * Math.pow(2, (1 / 12) * (keys[e.key] - 9));
-    piano.play(hz);
+    const hz = 440 * Math.pow(2, (1 / 12) * (piano.keys[e.key] - 9));
     socket.emit("piano", hz);
   }
 });
