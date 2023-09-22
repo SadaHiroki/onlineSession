@@ -2,9 +2,13 @@ window.AudioContext = window.AudioContext || window.webkitAudioContext;
 const audioCtx = new AudioContext();
 // ルーム機能
 const socket = io();
-const room = location.search.substring(6, 11);
+const url = new URL(window.location.href);
+const params = url.searchParams;
+const room = params.get("roomNumber");
+const userName = params.get("userName");
+const password = params.get("password");
 socket.on("connect", () => {
-  socket.emit("joinRoom", room);
+  socket.emit("joinRoom", room, userName, password);
 });
 document.getElementById("roomNumber").innerText = "部屋番号：" + room;
 

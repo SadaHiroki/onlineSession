@@ -38,12 +38,12 @@ const io = socketIo(server);
 //ルームを管理する配列
 const rooms = {};
 
-const MAX_ROOM = 10;
-const MAX_ROOM_CAPACITY = 5;
+// const MAX_ROOM = 10;
+// const MAX_ROOM_CAPACITY = 5;
 //クライアントが接続したときの処理
 io.on("connection", (socket) => {
   // ルームに入室する処理
-  socket.on("joinRoom", (room) => {
+  socket.on("joinRoom", (room, username = "ゲスト", password = "") => {
     // 既存のルームに入室する場合は、クライアントを既存のルームから削除
     if (socket.room) {
       socket.leave(socket.room);
@@ -52,26 +52,19 @@ io.on("connection", (socket) => {
 
     // 新しいルームにクライアントを追加
     if (!rooms[room]) {
-      if (Object.keys(rooms).length >= MAX_ROOM) {
-        console.log("roomLimit");
-        socket.emit("roomLimit");
-        return;
-      }
       rooms[room] = {};
+      rooms[room]["password"] = password
     }
 
-    //ルーム参加人数制限
-    if (Object.keys(rooms[room]).length >= MAX_ROOM_CAPACITY) {
-      console.log("roomLimitCapacity");
-      socket.emit("roomLimitCapacity");
-      return;
-    }
-
-    rooms[room][socket.id] = socket;
     socket.room = room;
-    socket.join(room);
-    socket.emit("joinedRoom");
-    console.log(rooms);
+    if(rooms[room]["password"] == password){
+        rooms[room][socket.id] = socket;
+        rooms[room][socket.id]["userName"] = username;
+        socket.join(room);
+        console.log(rooms);
+    }else{
+        io.to(socket.id).emit("passwordError");
+    }
   });
 
   //ピアノ
@@ -88,16 +81,17 @@ io.on("connection", (socket) => {
   socket.on("guitar", (src, i) => {
     io.to(socket.room).emit("guitar", src, i);
   });
-//   // クライアントが切断したときの処理
+  //   // クライアントが切断したときの処理
   socket.on("disconnect", () => {
     // クライアントをルームから削除
     if (socket.room && rooms[socket.room]) {
       delete rooms[socket.room][socket.id];
-      if (Object.keys(rooms[socket.room]).length === 0) {
+      if (Object.keys(rooms[socket.room]).length === 1) {
         delete rooms[socket.room];
       }
     }
     console.log("disconnect");
+    console.log(rooms);
   });
 });
 

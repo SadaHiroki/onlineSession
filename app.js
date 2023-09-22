@@ -1,22 +1,28 @@
 const createError = require("http-errors");
 const express = require("express");
 const path = require("path");
-const { routes } = require("./routes");
 const app = express();
 
+const indexRouter = require("./routes/index");
 
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "public")));
-routes.forEach((route) => {
-  app.get(route.path, (req, res) => {
-    res.render(route.view);
-  });
-});
+
+app.use((req, res, next)=>{
+    if(!req.headers.referer){
+        res.render("pages/index");
+    }else{
+        next();
+    }
+})
+
+app.use("/", indexRouter);
+
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
