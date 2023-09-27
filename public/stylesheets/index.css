@@ -3,17 +3,16 @@ body {
     background-color: #222;
     margin: 0;
     padding: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
     height: 100vh;
     color: #fff;
     font-weight: bold;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 
-.back:hover{
+.back:hover {
     opacity: 0.5;
 }
 
@@ -27,47 +26,41 @@ body {
     color: #fff;
 }
 
-.explanation{
+.explanation {
     font-size: 20px;
     color: #fff;
 }
 
-.button-container {
+.image-container {
     display: flex;
-    justify-content: center;
-    align-items: center;
+    justify-content: space-around;
 }
 
-.button {
-    margin: 10px;
-    padding: 12px 24px;
-    background-color: #007bff;
+
+.image {
+    filter: invert(100%);
+}
+
+.offline img {
+    width: 100px;
+}
+
+.offline h2 {
     color: #fff;
-    border: none;
-    border-radius: 30px;
-    font-size: 18px;
-    cursor: pointer;
-    text-decoration: none;
-    transition: background-color 0.3s ease;
 }
 
-.button:hover {
-    background-color: #0056b3;
+.online img {
+    width: 240px;
 }
 
-.button a {
-    color: #fff;
-    text-decoration: none;
-}
-
-.button:hover a {
+.online h2 {
+    margin-left: 30%;
     color: #fff;
 }
 
 a {
     text-decoration: none;
 }
-
-a:hover {
-    text-decoration: underline;
+a:hover{
+    filter: invert(70%);
 }

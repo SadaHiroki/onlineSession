@@ -3,24 +3,24 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./stylesheets/piano.css">
-    <title>ピアノ</title>
+    <link rel="stylesheet" href="./stylesheets/bass.css">
+    <title>ベース</title>
 </head>
 
 <body>
     <span class="back" onclick="window.history.back()">&#8592;戻る</span>
     <div class="room_number">
-        <h2 id="roomNumber">部屋番号:</h2>
+        <h2 id="roomNumber"></h2>
     </div>
-
-    <%- include ("../partials/piano.ejs") %>
+    <%- include ("../partials/bass.ejs") %>
         <script src="/socket.io/socket.io.js"></script>
         <script src="./javascripts/Piano.js"></script>
         <script src="./javascripts/Drum.js"></script>
         <script src="./javascripts/Guitar.js"></script>
         <script src="./javascripts/Bass.js"></script>
-        <script src="./javascripts/onPiano.js"></script>
+        <script src="./javascripts/onBass.js"></script>
 </body>
 
 </html>

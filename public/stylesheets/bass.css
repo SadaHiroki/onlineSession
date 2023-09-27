@@ -1,0 +1,109 @@
+* {
+    user-select: none;
+}
+
+.back {
+    font-weight: bold;
+    font-size: 30px;
+}
+
+.back:hover{
+    opacity: 0.5;
+}
+
+.bass-container {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+}
+
+.neck {
+    display: flex;
+    flex-direction: row;
+}
+
+.bass {
+    width: 70px;
+    height: 40px;
+    background-color: #2a2925;
+    border-left: 4px solid #d0d6cc;
+    border-right: 4px solid #d0d6cc;
+    ;
+}
+
+.bass:hover {
+    opacity: 0.8;
+}
+
+.bass:active {
+    opacity: 0.6;
+}
+
+.open{
+    background-color: rgb(168, 108, 55);
+    order: 99;
+}
+.string1, .string2, .string3, .string4 {
+    width: auto;
+    background-color: #d0d6cc;
+    margin-top: 25%;
+}
+
+.string1 {
+    height: 3px;
+}
+
+.string2 {
+    height: 4px;
+}
+
+.string3 {
+    height: 5px;
+}
+
+.string4 {
+    height: 6px;
+}
+
+.position-mark {
+    width: 20px;
+    height: 20px;
+    background-color: #ffffff;
+    border-radius: 50%;
+}
+
+#mark-one {
+    position: absolute;
+    top: 70px;
+    left: 180px;
+}
+
+#mark-two {
+    position: absolute;
+    top: 70px;
+    left: 335px;
+}
+
+#mark-three {
+    position: absolute;
+    top: 70px;
+    left: 490px;
+}
+
+#mark-four {
+    position: absolute;
+    top: 70px;
+    right: 410px;
+}
+
+#mark-five {
+    position: absolute;
+    top: 30px;
+    right: 180px;
+}
+
+#mark-six {
+    position: absolute;
+    bottom: 30px;
+    right: 180px;
+}

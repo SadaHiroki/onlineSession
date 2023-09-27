@@ -11,18 +11,18 @@ const password = params.get("password");
 socket.on("connect", () => {
   socket.emit("joinRoom", room, userName, password);
 });
-socket.on("passwordError",()=>{
-    alert("パスワードが違います")
-    window.location.href = `/room`;
-})
+socket.on("passwordError", () => {
+  alert("パスワードが違います");
+  window.location.href = `/room`;
+});
+
 document.getElementById("roomNumber").innerText = "部屋番号：" + room;
-
-
 
 // クラス
 const piano = new Piano();
 const drum = new Drum();
 const guitar = new Guitar();
+const bassClass = new Bass();
 
 // クリック
 const pianoKey = document.getElementsByClassName("pianokey");
@@ -31,7 +31,7 @@ for (i = 0; i < pianoKey.length; i++) {
     pianoKey[i].addEventListener(
       "click",
       () => {
-        const hz = 440 * Math.pow(2, (1 / 12) * (i - 9));
+        const hz = 220 * Math.pow(2, (1 / 12) * i);
         socket.emit("piano", hz);
       },
       false
@@ -42,7 +42,7 @@ for (i = 0; i < pianoKey.length; i++) {
 // キーボード
 document.addEventListener("keyup", (e) => {
   if (e.key in piano.keys) {
-    const hz = 440 * Math.pow(2, (1 / 12) * (piano.keys[e.key] - 9));
+    const hz = 220 * Math.pow(2, (1 / 12) * piano.keys[e.key]);
     socket.emit("piano", hz);
   }
 });
@@ -60,4 +60,9 @@ socket.on("drum", (src) => {
 // ギター
 socket.on("guitar", (src, i) => {
   guitar.play(src, i);
+});
+
+// ベース
+socket.on("bass", (src, i) => {
+  bassClass.play(src, i);
 });

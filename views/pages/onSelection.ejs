@@ -13,45 +13,45 @@
     <span class="back" onclick="window.history.back()">&#8592;戻る</span>
     <h2>どの楽器で演奏する？</h2>
     <div class="imagecontainer">
-            <div class="item">
-                <div id="piano">
-                    <img src="./images/pianoillust.png" alt="piano">
-                    <p>ピアノ</p>
-                </div>
+        <div class="item">
+            <div id="piano">
+                <img src="./images/pianoillust.png" alt="piano">
+                <p>ピアノ</p>
             </div>
-            <div class="item">
-                <div id="guitar">
-                    <img src="./images/guitarillust.png" alt="guitar">
-                    <p>ギター</p>
-                </div>
+        </div>
+        <div class="item">
+            <div id="guitar">
+                <img src="./images/guitarillust.png" alt="guitar">
+                <p>ギター</p>
             </div>
-            <div class="item">
-                <div id="bass">
-                    <img src="./images/bassillust.png" alt="bass">
-                    <p>ベース</p>
-                </div>
+        </div>
+        <div class="item">
+            <div id="bass">
+                <img src="./images/bassillust.png" alt="bass">
+                <p>ベース</p>
             </div>
-            <div class="item">
-                <div id="drum">
-                    <img src="./images/drumillust.png" alt="drum">
-                    <p>ドラム</p>
-                </div>
+        </div>
+        <div class="item">
+            <div id="drum">
+                <img src="./images/drumillust.png" alt="drum">
+                <p>ドラム</p>
             </div>
+        </div>
     </div>
     <script>
         const roomNumber = '<%= roomNumber %>'
         const userName = '<%= userName %>'
         const password = '<%= password %>'
-        document.getElementById("piano").addEventListener("click",()=>{
+        document.getElementById("piano").addEventListener("click", () => {
             window.location.href = `/onPiano?roomNumber=${roomNumber}&userName=${userName}&password=${password}`;
         })
-        document.getElementById("guitar").addEventListener("click",()=>{
+        document.getElementById("guitar").addEventListener("click", () => {
             window.location.href = `/onGuitar?roomNumber=${roomNumber}&userName=${userName}&password=${password}`;
         })
-        // document.getElementById("bass").addEventListener("click",()=>{
-        //     window.location.href = `/onPiano?roomNumber=${roomNumber}`;
-        // })
-        document.getElementById("drum").addEventListener("click",()=>{
+        document.getElementById("bass").addEventListener("click", () => {
+            window.location.href = `/onBass?roomNumber=${roomNumber}&userName=${userName}&password=${password}`;
+        })
+        document.getElementById("drum").addEventListener("click", () => {
             window.location.href = `/onDrum?roomNumber=${roomNumber}&userName=${userName}&password=${password}`;
         })
     </script>

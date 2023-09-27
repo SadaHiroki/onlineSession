@@ -1,22 +1,79 @@
 class Piano {
   keys = {
-    q: 0,
-    2: 1,
-    w: 2,
-    3: 3,
-    e: 4,
-    r: 5,
-    5: 6,
-    t: 7,
-    6: 8,
-    y: 9,
-    7: 10,
-    u: 11,
-    i: 12,
-    9: 13,
-    o: 14,
-    0: 15,
-    p: 16,
+    z: 0,
+    Z: 24,
+    s: 1,
+    S: 25,
+    x: 2,
+    X: 26,
+    c: 3,
+    C: 27,
+    f: 4,
+    F: 28,
+    v: 5,
+    V: 29,
+    g: 6,
+    G: 30,
+    b: 7,
+    B: 31,
+    n: 8,
+    N: 32,
+    j: 9,
+    J: 33,
+    m: 10,
+    M: 34,
+    k: 11,
+    K: 35,
+    ",": 12,
+    "<": 36,
+    l: 13,
+    L: 37,
+    ".": 14,
+    ">": 38,
+    "/": 15,
+    "?": 39,
+    ":": 16,
+    "*": 40,
+    q: 12,
+    Q: 36,
+    2: 13,
+    '"': 37,
+    w: 14,
+    W: 38,
+    e: 15,
+    E: 39,
+    4: 16,
+    $: 40,
+    r: 17,
+    R: 41,
+    5: 18,
+    "%": 42,
+    t: 19,
+    T: 43,
+    y: 20,
+    Y: 44,
+    7: 21,
+    "'": 45,
+    u: 22,
+    U: 46,
+    8: 23,
+    "(": 47,
+    i: 24,
+    I: 48,
+    9: 25,
+    ")": 49,
+    o: 26,
+    O: 50,
+    p: 27,
+    P: 51,
+    "-": 28,
+    "=": 52,
+    "@": 29,
+    "`": 53,
+    "^": 30,
+    "~": 54,
+    "[": 31,
+    "{": 55,
   };
   play(hz) {
     //2種類の音を作る
@@ -35,10 +92,14 @@ class Piano {
     const currentTime = audioCtx.currentTime;
 
     //音を線形に音量変化させる
-    gainNode.gain.linearRampToValueAtTime(0.1, currentTime);
+    var gainValue = 0.2;
+    if (hz >= 300) {
+      gainValue = 0.1;
+    }
+    gainNode.gain.linearRampToValueAtTime(gainValue, currentTime);
     gainNode.gain.linearRampToValueAtTime(0, currentTime + 0.5);
     //2種類目の音は音量を小さく初めて少し長めに
-    gainNode2.gain.linearRampToValueAtTime(0.001, currentTime);
+    gainNode2.gain.linearRampToValueAtTime(gainValue / 2, currentTime);
     gainNode2.gain.linearRampToValueAtTime(0, currentTime + 0.5);
 
     //まず音量変更フィルタに作った音を通す

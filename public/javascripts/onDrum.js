@@ -8,8 +8,9 @@ const params = url.searchParams;
 const room = params.get("roomNumber");
 const userName = params.get("userName");
 const password = params.get("password");
+const mi = params.get("mi");
 socket.on("connect", () => {
-  socket.emit("joinRoom", room, userName, password);
+  socket.emit("joinRoom", room, userName, password, mi);
 });
 document.getElementById("roomNumber").innerText = "部屋番号：" + room;
 
@@ -17,6 +18,7 @@ document.getElementById("roomNumber").innerText = "部屋番号：" + room;
 const drum = new Drum();
 const piano = new Piano();
 const guitar = new Guitar();
+const bassClass = new Bass();
 
 // クリック
 document.getElementById("hat").onclick = (e) => {
@@ -65,4 +67,9 @@ socket.on("piano", (hz) => {
 //ギター
 socket.on("guitar", (src, i) => {
   guitar.play(src, i);
+});
+
+// ベース
+socket.on("bass", (src, i) => {
+  bassClass.play(src, i);
 });

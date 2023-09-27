@@ -23,6 +23,7 @@ class Drum {
   };
   play(src) {
     const source = audioCtx.createBufferSource();
+    const gainNode = audioCtx.createGain();
     const request = new XMLHttpRequest();
     request.open("GET", src, true);
     request.responseType = "arraybuffer";
@@ -35,7 +36,9 @@ class Drum {
       });
     };
 
-    source.connect(audioCtx.destination);
+    source.connect(gainNode);
+    gainNode.connect(audioCtx.destination);
+    gainNode.gain.value = 5;
     source.start(0);
   }
 }

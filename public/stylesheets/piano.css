@@ -58,6 +58,8 @@
     bottom: 0;
     left: 50%;
     color: #000000;
+    font-weight: bold;
+    font-family: arial;
 }
 
 .blackGuide {
@@ -65,4 +67,6 @@
     bottom: 0;
     left: 50%;
     color: #ffffff;
+    font-weight: bold;
+    font-family: arial;
 }

@@ -43,7 +43,7 @@ const rooms = {};
 //クライアントが接続したときの処理
 io.on("connection", (socket) => {
   // ルームに入室する処理
-  socket.on("joinRoom", (room, username = "ゲスト", password = "") => {
+  socket.on("joinRoom", (room, userName = "ゲスト", password = "") => {
     // 既存のルームに入室する場合は、クライアントを既存のルームから削除
     if (socket.room) {
       socket.leave(socket.room);
@@ -53,17 +53,17 @@ io.on("connection", (socket) => {
     // 新しいルームにクライアントを追加
     if (!rooms[room]) {
       rooms[room] = {};
-      rooms[room]["password"] = password
+      rooms[room]["password"] = password;
     }
 
     socket.room = room;
-    if(rooms[room]["password"] == password){
-        rooms[room][socket.id] = socket;
-        rooms[room][socket.id]["userName"] = username;
-        socket.join(room);
-        console.log(rooms);
-    }else{
-        io.to(socket.id).emit("passwordError");
+    if (rooms[room]["password"] == password) {
+      rooms[room][socket.id] = socket;
+      rooms[room][socket.id]["userName"] = userName;
+      socket.join(room);
+      console.log(rooms);
+    } else {
+      io.to(socket.id).emit("passwordError");
     }
   });
 
@@ -81,6 +81,12 @@ io.on("connection", (socket) => {
   socket.on("guitar", (src, i) => {
     io.to(socket.room).emit("guitar", src, i);
   });
+
+  //ベース
+  socket.on("bass", (src, i) => {
+    io.to(socket.room).emit("bass", src, i);
+  });
+
   //   // クライアントが切断したときの処理
   socket.on("disconnect", () => {
     // クライアントをルームから削除
