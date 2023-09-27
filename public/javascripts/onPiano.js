@@ -6,10 +6,10 @@ const socket = io();
 const url = new URL(window.location.href);
 const params = url.searchParams;
 const room = params.get("roomNumber");
-const userName = params.get("userName");
+// const userName = params.get("userName");
 const password = params.get("password");
 socket.on("connect", () => {
-  socket.emit("joinRoom", room, userName, password);
+  socket.emit("joinRoom", room, password);
 });
 socket.on("passwordError", () => {
   alert("パスワードが違います");

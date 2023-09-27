@@ -43,7 +43,7 @@ const rooms = {};
 //クライアントが接続したときの処理
 io.on("connection", (socket) => {
   // ルームに入室する処理
-  socket.on("joinRoom", (room, userName = "ゲスト", password = "") => {
+  socket.on("joinRoom", (room, password = "") => {
     // 既存のルームに入室する場合は、クライアントを既存のルームから削除
     if (socket.room) {
       socket.leave(socket.room);
@@ -59,7 +59,7 @@ io.on("connection", (socket) => {
     socket.room = room;
     if (rooms[room]["password"] == password) {
       rooms[room][socket.id] = socket;
-      rooms[room][socket.id]["userName"] = userName;
+    //   rooms[room][socket.id]["userName"] = userName;
       socket.join(room);
       console.log(rooms);
     } else {

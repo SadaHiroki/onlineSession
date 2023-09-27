@@ -2,7 +2,6 @@ const express = require("express");
 const router = express.Router();
 
 var roomNumber;
-var userName = "ゲスト";
 var password = "";
 
 /* GET home page. */
@@ -21,15 +20,11 @@ router.get("/offSelection", (req, res) => {
 router.get("/onSelection", (req, res) => {
   console.log(req.query.roomNumber);
   roomNumber = req.query.roomNumber;
-  if (req.query.userName != undefined) {
-    userName = req.query.userName;
-  }
   if (req.query.password != undefined) {
     password = req.query.password;
   }
   res.render("pages/onSelection", {
     roomNumber: roomNumber,
-    userName: userName,
     password: password,
   });
 });

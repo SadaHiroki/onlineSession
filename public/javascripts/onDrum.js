@@ -6,11 +6,10 @@ const socket = io();
 const url = new URL(window.location.href);
 const params = url.searchParams;
 const room = params.get("roomNumber");
-const userName = params.get("userName");
+// const userName = params.get("userName");
 const password = params.get("password");
-const mi = params.get("mi");
 socket.on("connect", () => {
-  socket.emit("joinRoom", room, userName, password, mi);
+  socket.emit("joinRoom", room, password);
 });
 document.getElementById("roomNumber").innerText = "部屋番号：" + room;
 

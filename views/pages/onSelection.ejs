@@ -40,19 +40,19 @@
     </div>
     <script>
         const roomNumber = '<%= roomNumber %>'
-        const userName = '<%= userName %>'
         const password = '<%= password %>'
+        // userName=${userName}&
         document.getElementById("piano").addEventListener("click", () => {
-            window.location.href = `/onPiano?roomNumber=${roomNumber}&userName=${userName}&password=${password}`;
+            window.location.href = `/onPiano?roomNumber=${roomNumber}&password=${password}`;
         })
         document.getElementById("guitar").addEventListener("click", () => {
-            window.location.href = `/onGuitar?roomNumber=${roomNumber}&userName=${userName}&password=${password}`;
+            window.location.href = `/onGuitar?roomNumber=${roomNumber}&password=${password}`;
         })
         document.getElementById("bass").addEventListener("click", () => {
-            window.location.href = `/onBass?roomNumber=${roomNumber}&userName=${userName}&password=${password}`;
+            window.location.href = `/onBass?roomNumber=${roomNumber}&password=${password}`;
         })
         document.getElementById("drum").addEventListener("click", () => {
-            window.location.href = `/onDrum?roomNumber=${roomNumber}&userName=${userName}&password=${password}`;
+            window.location.href = `/onDrum?roomNumber=${roomNumber}&password=${password}`;
         })
     </script>
 </body>
