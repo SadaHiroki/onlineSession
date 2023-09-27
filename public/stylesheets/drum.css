@@ -1,3 +1,7 @@
+#member{
+    position: absolute;
+    top: 550px;
+}
 .back {
     font-weight: bold;
     font-size: 30px;

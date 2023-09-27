@@ -6,11 +6,27 @@ const socket = io();
 const url = new URL(window.location.href);
 const params = url.searchParams;
 const room = params.get("roomNumber");
-// const userName = params.get("userName");
+const userName = params.get("userName");
 const password = params.get("password");
+const mi = params.get("mi");
 socket.on("connect", () => {
-  socket.emit("joinRoom", room, password);
+  socket.emit("joinRoom", room, userName, password, mi);
 });
+socket.on("passwordError", () => {
+  alert("パスワードが違います");
+  window.location.href = `/room`;
+});
+socket.on("members", (names, mis) => {
+    const member = document.getElementById("member");
+    const clone = member.cloneNode(false);
+    member.parentNode.replaceChild(clone, member);
+    const h3 = document.createElement("h3");
+    h3.textContent = "参加者";
+    clone.append(h3);
+    for (let i = 0; i < names.length; i++) {
+      clone.append(`${names[i]}:${mis[i]} `);
+    }
+  });
 document.getElementById("roomNumber").innerText = "部屋番号：" + room;
 
 // クラス

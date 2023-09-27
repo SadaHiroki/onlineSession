@@ -43,7 +43,7 @@ const rooms = {};
 //クライアントが接続したときの処理
 io.on("connection", (socket) => {
   // ルームに入室する処理
-  socket.on("joinRoom", (room, password = "") => {
+  socket.on("joinRoom", (room, userName = "ゲスト", password = "", mi) => {
     // 既存のルームに入室する場合は、クライアントを既存のルームから削除
     if (socket.room) {
       socket.leave(socket.room);
@@ -59,9 +59,19 @@ io.on("connection", (socket) => {
     socket.room = room;
     if (rooms[room]["password"] == password) {
       rooms[room][socket.id] = socket;
-    //   rooms[room][socket.id]["userName"] = userName;
+      rooms[room][socket.id]["userName"] = userName;
+      rooms[room][socket.id]["mi"] = mi
       socket.join(room);
       console.log(rooms);
+      const keys = Object.keys(rooms[socket.room]);
+      keys.shift();
+      var userNames = [];
+      var mi = []
+      keys.forEach((key) => {
+        userNames.push(rooms[socket.room][key]["userName"]);
+        mi.push(rooms[socket.room][key]["mi"])
+      });
+      io.to(socket.room).emit("members", userNames, mi);
     } else {
       io.to(socket.id).emit("passwordError");
     }
@@ -95,6 +105,17 @@ io.on("connection", (socket) => {
       if (Object.keys(rooms[socket.room]).length === 1) {
         delete rooms[socket.room];
       }
+    }
+    if (rooms[socket.room]) {
+      const keys = Object.keys(rooms[socket.room]);
+      keys.shift();
+      var userNames = [];
+      var mi = []
+      keys.forEach((key) => {
+        userNames.push(rooms[socket.room][key]["userName"]);
+        mi.push(rooms[socket.room][key]["mi"])
+      });
+      io.to(socket.room).emit("members", userNames, mi);
     }
     console.log("disconnect");
     console.log(rooms);
