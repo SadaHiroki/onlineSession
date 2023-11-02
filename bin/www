@@ -6,7 +6,7 @@
 
 const { log } = require("console");
 const app = require("../app");
-const debug = require("debug")("pianoapp:server");
+const debug = require("debug")("onlinesession:server");
 const http = require("http");
 const socketIo = require("socket.io");
 
@@ -43,7 +43,7 @@ const rooms = {};
 //クライアントが接続したときの処理
 io.on("connection", (socket) => {
   // ルームに入室する処理
-  socket.on("joinRoom", (room, userName = "ゲスト", password = "", mi) => {
+  socket.on("joinRoom", (room, userName, password, mi) => {
     // 既存のルームに入室する場合は、クライアントを既存のルームから削除
     if (socket.room) {
       socket.leave(socket.room);

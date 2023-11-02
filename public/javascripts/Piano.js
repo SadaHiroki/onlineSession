@@ -99,8 +99,8 @@ class Piano {
     gainNode.gain.linearRampToValueAtTime(gainValue, currentTime);
     gainNode.gain.linearRampToValueAtTime(0, currentTime + 0.5);
     //2種類目の音は音量を小さく初めて少し長めに
-    gainNode2.gain.linearRampToValueAtTime(gainValue / 2, currentTime);
-    gainNode2.gain.linearRampToValueAtTime(0, currentTime + 0.5);
+    gainNode2.gain.linearRampToValueAtTime(gainValue / 5, currentTime);
+    gainNode2.gain.linearRampToValueAtTime(0, currentTime + 1);
 
     //まず音量変更フィルタに作った音を通す
     oscillator.connect(gainNode);

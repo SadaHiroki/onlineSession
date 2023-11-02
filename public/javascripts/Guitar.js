@@ -70,7 +70,7 @@ class Guitar {
     source.playbackRate.value = Math.pow(2, i / 12);
     source.connect(gainNode);
     gainNode.connect(audioCtx.destination);
-    gainNode.gain.value = 1;
+    gainNode.gain.value = 0.1;
     source.start(0);
   }
 }

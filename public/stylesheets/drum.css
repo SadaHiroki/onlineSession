@@ -1,126 +1,135 @@
-#member{
+#member {
     position: absolute;
     top: 550px;
 }
+
 .back {
     font-weight: bold;
     font-size: 30px;
 }
 
-.back:hover{
+.back:hover {
     opacity: 0.5;
 }
 
- .drum {
-      width: 1000px;
-      height: 500px;
-      position: relative;
-  }
+.drum {
+    width: 1000px;
+    height: 500px;
+    position: relative;
+}
 
-  .crash_cymbal_left {
-      width: 200px;
-      height: 150px;
-      background-color: gold;
-      border-radius: 50%;
-      filter: drop-shadow(0px 5px 5px #4e4e4e);
-      position: absolute;
-      left: 10%;
-  }
-
-
-  .hat {
-      width: 150px;
-      height: 130px;
-      background-color: gold;
-      border-radius: 50%;
-      filter: drop-shadow(0px 5px 5px #4e4e4e);
-      position: absolute;
-      top: 35%;
-  }
-
-  .snare {
-      width: 150px;
-      height: 130px;
-      background-color: white;
-      border: 5px solid black;
-      border-radius: 50%;
-      filter: drop-shadow(0px 10px 0px black);
-      position: absolute;
-      top: 40%;
-      left: 20%;
-  }
-
-  .bass {
-      width: 150px;
-      height: 150px;
-      background-color: white;
-      border: 5px solid black;
-      border-radius: 50%;
-      filter: drop-shadow(0px -15px 0px black);
-      position: absolute;
-      top: 48%;
-      left: 40%;
-  }
+.crash_cymbal_left {
+    width: 200px;
+    height: 150px;
+    background-color: gold;
+    border-radius: 50%;
+    filter: drop-shadow(0px 5px 5px #4e4e4e);
+    position: absolute;
+    left: 10%;
+}
 
 
-  .high_tom {
-      width: 100px;
-      height: 100px;
-      background-color: white;
-      border: 5px solid black;
-      border-radius: 50%;
-      filter: drop-shadow(0px 15px 0px black);
-      position: absolute;
-      top: 15%;
-      left: 35%;
-  }
+.hat {
+    width: 150px;
+    height: 130px;
+    background-color: gold;
+    border-radius: 50%;
+    filter: drop-shadow(0px 5px 5px #4e4e4e);
+    position: absolute;
+    top: 35%;
+}
 
-  .low_tom {
-      width: 100px;
-      height: 100px;
-      background-color: white;
-      border: 5px solid black;
-      border-radius: 50%;
-      filter: drop-shadow(0px 15px 0px black);
-      position: absolute;
-      top: 15%;
-      left: 50%;
-  }
+.snare {
+    width: 150px;
+    height: 130px;
+    background-color: white;
+    border: 5px solid black;
+    border-radius: 50%;
+    filter: drop-shadow(0px 10px 0px black);
+    position: absolute;
+    top: 40%;
+    left: 20%;
+}
 
-  .floor_tom {
-      width: 150px;
-      height: 130px;
-      background-color: white;
-      border: 5px solid black;
-      filter: drop-shadow(0px 10px 0px black);
-      border-radius: 50%;
-      position: absolute;
-      top: 40%;
-      right: 24%;
-  }
+.bass {
+    width: 150px;
+    height: 150px;
+    background-color: white;
+    border: 5px solid black;
+    border-radius: 50%;
+    filter: drop-shadow(0px -15px 0px black);
+    position: absolute;
+    top: 48%;
+    left: 40%;
+}
 
-  .ride_cymbal {
-      width: 200px;
-      height: 150px;
-      background-color: gold;
-      border-radius: 50%;
-      filter: drop-shadow(0px 5px 5px #4e4e4e);
-      position: absolute;
-      top:30%;
-      right: 0%;
-  }
 
-  .crash_cymbal_right {
-      width: 200px;
-      height: 150px;
-      background-color: gold;
-      border-radius: 50%;
-      filter: drop-shadow(0px 5px 5px #4e4e4e);
-      position: absolute;
-      right: 13%;
-  }
+.high_tom {
+    width: 100px;
+    height: 100px;
+    background-color: white;
+    border: 5px solid black;
+    border-radius: 50%;
+    filter: drop-shadow(0px 15px 0px black);
+    position: absolute;
+    top: 15%;
+    left: 35%;
+}
 
-  p {
-      text-align: center;
-      font-weight: bold;
-  }
+.low_tom {
+    width: 100px;
+    height: 100px;
+    background-color: white;
+    border: 5px solid black;
+    border-radius: 50%;
+    filter: drop-shadow(0px 15px 0px black);
+    position: absolute;
+    top: 15%;
+    left: 50%;
+}
+
+.floor_tom {
+    width: 150px;
+    height: 130px;
+    background-color: white;
+    border: 5px solid black;
+    filter: drop-shadow(0px 10px 0px black);
+    border-radius: 50%;
+    position: absolute;
+    top: 40%;
+    right: 24%;
+}
+
+.ride_cymbal {
+    width: 200px;
+    height: 150px;
+    background-color: gold;
+    border-radius: 50%;
+    filter: drop-shadow(0px 5px 5px #4e4e4e);
+    position: absolute;
+    top: 30%;
+    right: 0%;
+}
+
+.crash_cymbal_right {
+    width: 200px;
+    height: 150px;
+    background-color: gold;
+    border-radius: 50%;
+    filter: drop-shadow(0px 5px 5px #4e4e4e);
+    position: absolute;
+    right: 13%;
+}
+
+.crash_cymbal_left:hover, .hat:hover, .snare:hover, .bass:hover, .high_tom:hover, .low_tom:hover, .floor_tom:hover, .ride_cymbal:hover, .crash_cymbal_right:hover {
+    opacity: 0.8;
+}
+
+.crash_cymbal_left:active, .hat:active, .snare:active, .bass:active, .high_tom:active, .low_tom:active, .floor_tom:active, .ride_cymbal:active, .crash_cymbal_right:active {
+    opacity: 0.6;
+}
+
+p {
+    text-align: center;
+    font-weight: bold;
+}

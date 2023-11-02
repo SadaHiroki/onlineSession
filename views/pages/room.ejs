@@ -15,12 +15,13 @@
 
         <form action="/onSelection" method="get" id="joinForm" class="join-form">
             <label for="roomNumberInput" class="label">部屋ID</label>
-            <input type="text" name="roomNumber" placeholder="5桁の半角数字" pattern="[0-9]+" maxlength="5" minlength="5"
-                required class="input">
+            <input type="text" name="roomNumber" class="input" placeholder="5桁の半角数字" pattern="[0-9]+" title="半角数字で入力してください"
+                maxlength="5" minlength="5" required >
             <label for="userName" class="label">ユーザー名</label>
-            <input type="text" name="userName" value="ゲスト" class="input">
+            <input type="text" name="userName" value="ゲスト" class="input" pattern="[ぁ-んァ-ヶ一-龠々a-zA-Z0-9０-９]+"
+                title="特殊文字は使用できません。" required>
             <label for="password" class="label">部屋パスワード</label>
-            <input type="text" name="password" class="input">
+            <input type="text" name="password" class="input" pattern="[ぁ-んァ-ヶ一-龠々a-zA-Z0-9０-９]+" title="特殊文字は使用できません。">
             <button type="submit" class="join-button">入室</button>
         </form>
     </div>

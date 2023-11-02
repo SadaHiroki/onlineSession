@@ -1,5 +1,5 @@
 class Bass {
-    basses = [
+     basses = [
       {
         class: "first",
         source: "audio/bass1-G.mp3",
@@ -34,7 +34,7 @@ class Bass {
       source.playbackRate.value = Math.pow(2, i / 12);
       source.connect(gainNode);
       gainNode.connect(audioCtx.destination);
-      gainNode.gain.value = 1;
+      gainNode.gain.value = 0.2;
       source.start(0);
     }
   }

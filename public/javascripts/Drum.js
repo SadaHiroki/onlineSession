@@ -38,7 +38,7 @@ class Drum {
 
     source.connect(gainNode);
     gainNode.connect(audioCtx.destination);
-    gainNode.gain.value = 5;
+    gainNode.gain.value = 0.5;
     source.start(0);
   }
 }
