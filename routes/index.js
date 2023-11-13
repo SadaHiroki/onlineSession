@@ -14,11 +14,11 @@ router.get("/offSelection", (req, res) => {
   res.render("pages/offSelection");
 });
 
-router.get("/onSelection", (req, res) => {
+router.post("/onSelection", (req, res) => {
   res.render("pages/onSelection", {
-    roomNumber: req.query.roomNumber,
-    userName: req.query.userName,
-    password: req.query.password,
+    roomNumber: req.body.roomNumber,
+    userName: req.body.userName,
+    password: req.body.password,
   });
 });
 

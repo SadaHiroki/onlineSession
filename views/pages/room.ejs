@@ -10,10 +10,11 @@
 </head>
 
 <body>
+    <span class="back" onclick="window.history.back()">&#8592;戻る</span>
     <div class="container">
         <h1 class="title">ルームに入る</h1>
 
-        <form action="/onSelection" method="get" id="joinForm" class="join-form">
+        <form action="/onSelection" method="post" id="joinForm" class="join-form">
             <label for="roomNumberInput" class="label">部屋ID</label>
             <input type="text" name="roomNumber" class="input" placeholder="5桁の半角数字" pattern="[0-9]+" title="半角数字で入力してください"
                 maxlength="5" minlength="5" required >
